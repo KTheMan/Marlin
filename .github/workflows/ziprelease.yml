@@ -1,15 +1,12 @@
 
 name: Zip Release
-on:
+on: 
   push:
-    branches: [ "2.1.x" ]
     tags:
-    - '*'
-  pull_request:
-    branches: [ "2.1.x" ]
-    tags:
-    - '*'
+      - '*'
   workflow_dispatch:
+    tags:
+      - '*'
     
 jobs:
   build:
@@ -28,5 +25,7 @@ jobs:
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
+          allowUpdates: true
+          replacesArtifacts: true
           artifacts: "release.zip"
           token: ${{ secrets.GITHUB_TOKEN }}  
