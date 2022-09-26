@@ -16,5 +16,9 @@ jobs:
       - name: Zip Release
         uses: TheDoctor0/zip-release@main
         with:
-          filename: 'release.zip'
+          filename: 'marlin.zip'
           exclusions: '*.github* *.vscode*'
+      - uses: actions/upload-artifact@v1
+        with:
+          name: marlin-zip
+          path: ${{ github.workspace }}/marlin.zip
