@@ -5,12 +5,13 @@ on:
     branches: [ "2.1.x" ]
   pull_request:
     branches: [ "2.1.x" ]
-
-    workflow_dispatch: ziprelease
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@master
 
@@ -20,3 +21,8 @@ jobs:
           filename: 'marlin.zip'
           exclusions: '.github .vscode'
 
+      - name: Upload Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "marlin.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}  
