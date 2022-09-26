@@ -1,0 +1,30 @@
+
+name: Zip and Release
+on: 
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    tags:
+      - '*'
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@master
+      - name: Zip
+        uses: TheDoctor0/zip-release@main
+        with:
+          filename: 'marlin.zip'
+          exclusions: '*.github* *.vscode*'
+      - name: Release
+        uses: ncipollo/release-action@main
+        with:
+          tag: octo
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          artifacts: 'marlin.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
