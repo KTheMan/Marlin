@@ -11,6 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@master
       - name: Zip
@@ -18,14 +20,10 @@ jobs:
         with:
           filename: 'marlin.zip'
           exclusions: '*.github* *.vscode*'
-  release:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v2
-      - name: Release
+      - name: Marlin
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "marlin.zip"
-          token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          artifacts: 'marlin.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
