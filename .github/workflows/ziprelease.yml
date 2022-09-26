@@ -10,8 +10,6 @@ on:
     tags:
     - '*'
   workflow_dispatch:
-    tags:
-    - '*'
     
 jobs:
   build:
@@ -24,11 +22,11 @@ jobs:
       - name: Zip Release
         uses: TheDoctor0/zip-release@main
         with:
-          filename: 'marlin.zip'
+          filename: 'release.zip'
           exclusions: '.github .vscode'
 
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "marlin.zip"
+          artifacts: "release.zip"
           token: ${{ secrets.GITHUB_TOKEN }}  
