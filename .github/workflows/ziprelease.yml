@@ -20,9 +20,10 @@ jobs:
         with:
           filename: 'marlin.zip'
           exclusions: '*.github* *.vscode*'
-      - name: Marlin
-        uses: ncipollo/release-action@v1
+      - name: Release
+        uses: ncipollo/release-action@main
         with:
+          tag: octo
           allowUpdates: true
           artifactErrorsFailBuild: true
           artifacts: 'marlin.zip'
