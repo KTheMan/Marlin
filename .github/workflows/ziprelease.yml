@@ -11,21 +11,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@master
-
       - name: Zip Release
         uses: TheDoctor0/zip-release@main
         with:
           filename: 'release.zip'
-          exclusions: '.github .vscode'
-
-      - name: Upload Release
-        uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true
-          replacesArtifacts: true
-          artifacts: "release.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}  
+          exclusions: '*.github* *.vscode*'
