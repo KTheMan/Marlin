@@ -1,5 +1,5 @@
 
-name: Zip Release
+name: Zip and Release
 on: 
   push:
     tags:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Zip Release
+      - name: Zip
         uses: TheDoctor0/zip-release@main
         with:
           filename: 'marlin.zip'
@@ -23,7 +23,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: ncipollo/release-action@v1
+      - uses: actions/checkout@v2
+      - name: Release
+        uses: ncipollo/release-action@v1
         with:
           artifacts: "marlin.zip"
           token: ${{ secrets.YOUR_GITHUB_TOKEN }}
