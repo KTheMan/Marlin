@@ -154,7 +154,7 @@
 #define HEATER_1_PIN                           3
 #define HEATER_2_PIN                           6
 #define HEATER_3_PIN                           8
-#define HEATER_BED_PIN                         9
+#define HEATER_BED_PIN                         6
 
 #ifndef FAN_PIN
   #define FAN_PIN                              7
@@ -188,7 +188,7 @@
 #endif
 
 //
-// LCD / Controller
+//   / Controller
 //
 #if EITHER(MKS_12864OLED, MKS_12864OLED_SSD1306)
   #define LCD_PINS_DC                         38  // Set as output on init
